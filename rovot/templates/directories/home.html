@@ -1,0 +1,37 @@
+{% extends 'directories/base.html' %}
+{% block content %}
+    <div class="home-container">
+        <div class="chatbox">
+            <div class="chatbox-header">
+                <p>Hi, my name is Rovot. I am trained to give a list of movie suggestion based on what your are feeling right now.</p>
+                <p><br>To get started, I'll need to ask how are you today?</p>
+            </div>
+            <div class="chatbox-messages">
+                <div class="messages-container">
+                    <div class="msg-divider">
+                        <div class="msg-received"> <!--RoVot messages-->
+                            <p>
+                                Testing<br>
+                                Testing<br>
+                                Testing<br>
+                                Testing<br>
+                                Testing<br>
+                                Testing<br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="msg-divider">
+                        <div class="msg-sent"> <!--User messages-->
+                            <p>Hello po</p>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="chatbox-input">
+                <div class="input-group">
+                    <input type="text" class="input-chat" placeholder="chat with Mr. RoVot">
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
