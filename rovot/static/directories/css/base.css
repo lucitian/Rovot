@@ -20,17 +20,6 @@
 }
 
 body {
-    background-color: #fff;
     font-size: 18px;
     font-family: 'Inconsolata', monospace;
-}
-
-.container {
-    max-height: 100%;
-}
-
-main {
-    margin: 75px auto;
-    display: flex;
-    justify-content: center;
 }
