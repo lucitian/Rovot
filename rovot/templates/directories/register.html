@@ -2,31 +2,32 @@
 {% block content %}
     <div class="register-container">
         <div class="register-form-container">
-            <div class="register-form">
+            <form class="register-form" method="POST">
+                {% csrf_token %}
                 <h1>Register an account</h1>
                 <div class="register-username">
-                    <label for="register-username-label">Username</label>
-                    <input type="text" class="input-username" id="input-username-register">
+                    <label for="register-username-label">{{form.username.label}}</label>
+                    {{form.username}}
                 </div>
                 <div class="register-email">
-                    <label for="register-email-label">Email</label>
-                    <input type="text" class="input-email" id="input-email-register">
+                    <label for="register-email-label">{{form.email.label}}</label>
+                    {{form.email}}
                 </div>
                 <div class="register-password">
-                    <label for="register-password-label">Password</label>
-                    <input type="text" class="input-password" id="input-password-register">
+                    <label for="register-password-label">{{form.password1.label}}</label>
+                    {{form.password1}}
                 </div>
                 <div class="register-confirm">
-                    <label for="register-confirm-label">Confirm Password</label>
-                    <input type="text" class="input-confirm" id="input-confirm-register">
+                    <label for="register-confirm-label">{{form.password2.label}}</label>
+                    {{form.password2}}
                 </div>
                 <div class="register-button">
-                    <button type="button" id="register-button">Register Account</button>
+                    <button type="submit" value="Submit" id="register-button">Register Account</button>
                 </div>
                 <div class="register-exist">
                     <p>Already have an account? <a href='../login'>Sign in.</a></p>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 {% endblock content%}
