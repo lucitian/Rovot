@@ -6,19 +6,19 @@
                 {% csrf_token %}
                 <h1>Register an account</h1>
                 <div class="register-username">
-                    <label for="register-username-label">{{form.username.label}}</label>
+                    <label for="register-username">{{form.username.label}}</label>
                     {{form.username}}
                 </div>
                 <div class="register-email">
-                    <label for="register-email-label">{{form.email.label}}</label>
+                    <label for="register-email">{{form.email.label}}</label>
                     {{form.email}}
                 </div>
                 <div class="register-password">
-                    <label for="register-password-label">{{form.password1.label}}</label>
+                    <label for="password1">{{form.password1.label}}</label>
                     {{form.password1}}
                 </div>
                 <div class="register-confirm">
-                    <label for="register-confirm-label">{{form.password2.label}}</label>
+                    <label for="password2">{{form.password2.label}}</label>
                     {{form.password2}}
                 </div>
                 <div class="register-button">
@@ -26,6 +26,11 @@
                 </div>
                 <div class="register-exist">
                     <p>Already have an account? <a href='../login'>Sign in.</a></p>
+                </div>
+                <div class="alert-message">
+                    {% for message in messages %}
+                        <p id="messages">{{message}}</p>
+                    {% endfor %}
                 </div>
             </form>
         </div>

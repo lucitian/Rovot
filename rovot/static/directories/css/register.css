@@ -33,12 +33,9 @@
     font-size: 20px;
 }
 
-.register-username .input-username {
+.register-input-username{
     width: 100%;
     height: 50px;
-}
-
-#input-username-register {
     font-family: Inconsolate, monospace;
     font-size: 16px;
     padding: 0 5px;
@@ -56,12 +53,9 @@
     font-size: 20px;
 }
 
-.register-email .input-email {
+.register-input-email {
     width: 100%;
     height: 50px;
-}
-
-#input-email-register {
     font-family: Inconsolate, monospace;
     font-size: 16px;
     padding: 0 5px;
@@ -79,12 +73,9 @@
     font-size: 20px;
 }
 
-.register-password .input-password {
+.register-input-password{
     width: 100%;
     height: 50px;
-}
-
-#input-password-register {
     font-family: Inconsolate, monospace;
     font-size: 16px;
     padding: 0 5px;
@@ -102,12 +93,9 @@
     font-size: 20px;
 }
 
-.register-confirm .input-confirm {
+.register-input-confirm{
     width: 100%;
     height: 50px;
-}
-
-#input-confirm-register {
     font-family: Inconsolate, monospace;
     font-size: 16px;
     padding: 0 5px;
