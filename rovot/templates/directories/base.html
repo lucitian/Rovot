@@ -16,12 +16,15 @@
                 {% block content %}{% endblock content %}
             </main>
         </div>
+
         <script>
-            setTimeout(function(){
-                if ($('#messages').length > 0) {
-                    $('#messages').remove()
-                }
-            }, 2000)
+            // container
+            var message_ele = document.getElementById("messages");
+
+            // function to hide message within a specific time
+            setTimeout(function(){ 
+                message_ele.style.display = "none"; 
+            }, 3000);
         </script>
     </body>
 </html>
