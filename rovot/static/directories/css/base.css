@@ -23,3 +23,7 @@ body {
     font-size: 18px;
     font-family: 'Inconsolata', monospace;
 }
+
+button {
+    cursor: pointer;
+}

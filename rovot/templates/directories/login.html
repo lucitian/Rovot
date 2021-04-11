@@ -1,0 +1,24 @@
+{% extends 'directories/base.html' %}
+{% block content %}
+    <div class=login-container>
+        <div class="login-form-container">
+            <div class="login-form">
+                <h1>Login</h1>
+                <div class="login-email">
+                    <label for="login-email-label">Email/Username</label>
+                    <input type="text" class="input-email" id="input-email-login">
+                </div>
+                <div class="login-password">
+                    <label for="login-password-label">Password</label>
+                    <input type="text" class="input-password" id="input-password-login">
+                </div>
+                <div class="login-button">
+                    <button type="button" id="login-button">Login</button>
+                </div>
+                <div class="login-create">
+                    <p>Not Registered? <a href='../register'>Create an account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content%} 
