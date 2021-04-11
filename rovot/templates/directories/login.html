@@ -15,6 +15,13 @@
                 <div class="login-button">
                     <button type="button" id="login-button">Login</button>
                 </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert-message" id="messages" role="alert">{{message}}</div>
+                    {% endfor %}
+                {% endif %}
+                
                 <div class="login-create">
                     <p>Not Registered? <a href='../register'>Create an account</a></p>
                 </div>

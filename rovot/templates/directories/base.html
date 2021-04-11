@@ -16,5 +16,12 @@
                 {% block content %}{% endblock content %}
             </main>
         </div>
+        <script>
+            setTimeout(function(){
+                if ($('#messages').length > 0) {
+                    $('#messages').remove()
+                }
+            }, 2000)
+        </script>
     </body>
 </html>

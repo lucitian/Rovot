@@ -2,7 +2,7 @@
     top: 0; left: 0; right: 0; bottom: 0;
     position: absolute;
     width: 480px;
-    height: 480px;
+    height: 500px;
     margin: auto;
     background-color: #fff;
     border-radius: 15px !important;
@@ -82,9 +82,17 @@
     background-color: #aed581;
 }
 
+.alert-message {
+    margin: 12px auto;
+    text-justify: inter-word;
+    text-align: center;
+    font-size: 14px;
+    color: rgb(26, 84, 192);
+}
+
 .login-create {
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .login-create p a{
