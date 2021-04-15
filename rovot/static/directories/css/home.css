@@ -3,6 +3,16 @@
     justify-content: center;
 }
 
+.logout-button {
+    top: 20px; left: 20px;
+    position: fixed;
+}
+
+.logout-button a {
+    color: black;
+    text-decoration: none !important;
+}
+
 .chatbox {
     width: 550px;
     position: fixed;
