@@ -2,18 +2,19 @@
 {% block content %}
     <div class=login-container>
         <div class="login-form-container">
-            <div class="login-form">
+            <form class="login-form" method="POST">
+                {% csrf_token %}
                 <h1>Login</h1>
                 <div class="login-email">
                     <label for="login-email-label">Email/Username</label>
-                    <input type="text" class="input-email" id="input-email-login">
+                    <input type="text" name="login-username" class="input-email" id="input-email-login">
                 </div>
                 <div class="login-password">
                     <label for="login-password-label">Password</label>
-                    <input type="text" class="input-password" id="input-password-login">
+                    <input type="password" name="login-password" class="input-password" id="input-password-login">
                 </div>
                 <div class="login-button">
-                    <button type="button" id="login-button">Login</button>
+                    <button type="submit" value="login" id="login-button">Login</button>
                 </div>
 
                 {% if messages %}
@@ -25,7 +26,7 @@
                 <div class="login-create">
                     <p>Not Registered? <a href='../register'>Create an account</a></p>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 {% endblock content%} 

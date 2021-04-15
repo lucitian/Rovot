@@ -2,9 +2,29 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm
 
+from django.contrib.auth import authenticate, login, logout
+
 # Create your views here.
 def login(request):
-    return render(request, 'directories/login.html')
+    ctx = {
+            'form': None
+    }
+    
+    if request.method == 'POST':
+        username = request.POST.get('login-username')
+        password = request.POST.get('login-password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+
+            messages.success(request, 'Login successful!')
+
+            return redirect('rovot-home')
+        else:
+            messages.info(request, 'Username or password is incorrect')
+
+    return render(request, 'directories/login.html', ctx)
 
 def register(request):
     ctx = {
