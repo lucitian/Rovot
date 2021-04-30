@@ -5,7 +5,10 @@ from .forms import UserRegistrationForm
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
-def login(request):
+def title(request):
+    return render(request, 'directories/title.html')
+
+def auth_login(request):
     ctx = {
             'form': None
     }
@@ -17,7 +20,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            '''login(request, user)'''
+            login(request, user)
             messages.success(request, 'Login successful!')
 
             return redirect('rovot-home')
