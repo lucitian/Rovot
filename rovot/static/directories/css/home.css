@@ -16,7 +16,11 @@
 
 .logout-button:hover {
     font-weight: 700;
+}
 
+.chatbox-form {
+    width: 550px;
+    background-color: blue;
 }
 
 .chatbox {
@@ -43,7 +47,7 @@
 .msg {
     border: none !important;
     border-radius: 15px !important;
-    width: auto;
+    max-width: 90%;
     background-color: #fff;
     box-shadow: -5px 10px 20px 10px rgba(0,0,0,0.1);
     margin-bottom: 25px;
@@ -85,12 +89,10 @@
     box-shadow: -5px 10px 20px 10px rgba(0,0,0,0.1);
     padding: 0 20px;
     transition: 0.5s;
-}
-
-#txtbox {
     width: 100%;
     height: 100%;
 }
+
 
 .input-chat:focus {
     border: none !important;

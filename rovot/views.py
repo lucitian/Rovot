@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, MessageForm
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -65,4 +65,15 @@ def auth_logout(request):
 
 @login_required(login_url='rovot-login')
 def home(request):
-    return render(request, 'directories/home.html')
+    form = MessageForm(request.POST)
+
+    text = ''
+
+    if form.is_valid():
+        text = form.cleaned_data['chat_message']
+        form = MessageForm()
+
+    args = {'form': form, 'text': text}
+    return render(request, 'directories/home.html', args)
+
+    

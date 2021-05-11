@@ -4,105 +4,39 @@
         <div class="logout-button">
             <a href="{% url 'rovot-logout' %}">logout</a>
         </div>
-        <div class="chatbox">
-            <div class="chatbox-messages">
-                <div class="chatbox-header">
-                    <p>Hi, my name is Rovot. I am trained to give a list of movie suggestion based on what your are feeling right now.</p>
-                    <p><br>To get started, I'll need to ask how are you today?</p>
-                </div>
-                <div class="messages-container">
-                    <div class="msg received"> <!--RoVot messages-->
-                         <div class="msg-text">
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit obcaecati voluptates adipisci ipsa ad quia sunt maiores quibusdam? Illum ducimus officia debitis, nam tempore adipisci aspernatur accusantium illo omnis dolor.
-                            </p>
-                        </div>
-                    </div>  
-
-                    <div class="msg sent"> <!--User messages-->
-                        <div class="msg-text">
-                            <p>Hello po</p>
-                        </div>
+        <form class="chatbox-form" method="POST">
+            {% csrf_token %}
+            <div class="chatbox">
+                <div class="chatbox-messages">
+                    <div class="chatbox-header">
+                        <p>Hi {{request.user}}, my name is Rovot. I am trained to give a list of movie suggestion based on what your are feeling right now.</p>
+                        <p><br>To get started, I'll need to ask how are you today?</p>
                     </div>
+                    <div class="messages-container">
+                        <div class="msg received"> <!--RoVot messages-->
+                            <div class="msg-text">
+                                <p>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit obcaecati voluptates adipisci ipsa ad quia sunt maiores quibusdam? Illum ducimus officia debitis, nam tempore adipisci aspernatur accusantium illo omnis dolor.
+                                </p>
+                            </div>
+                        </div>  
 
-                    <div class="msg received"> <!--RoVot messages-->
-                        <div class="msg-text">
-                           <p>
-                               Testing 101 again
-                           </p>
-                       </div>
-                   </div>  
 
-                   <div class="msg sent"> <!--User messages-->
-                        <div class="msg-text">
-                            <p>Messaged you Mr. Rovot.</p>
-                        </div>
+                        {% if text.strip %} <!-- Checker only if the text variable contains a string -->
+                            <div class="msg sent">
+                                <div class="msg-text">
+                                    {{text}}
+                                </div>
+                            </div>
+                        {% endif %}
                     </div>
-                    <div class="msg received"> <!--RoVot messages-->
-                        <div class="msg-text">
-                           <p>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                           </p>
-                       </div>
-                   </div>
-                   
-                   <div class="msg received"> <!--RoVot messages-->
-                         <div class="msg-text">
-                            <p>
-                                Testing<br>
-                                Testing<br>
-                                Testing<br>
-                                Testing<br>
-                                Testing<br>
-                                Testing<br>
-                            </p>
-                        </div>
-                    </div>  
-
-                    <div class="msg sent"> <!--User messages-->
-                        <div class="msg-text">
-                            <p>Hello po</p>
-                        </div>
-                    </div>
-
-                    <div class="msg received"> <!--RoVot messages-->
-                        <div class="msg-text">
-                           <p>
-                               Testing 101 again
-                           </p>
-                       </div>
-                   </div>  
-
-                   <div class="msg sent"> <!--User messages-->
-                        <div class="msg-text">
-                            <p>Messaged you Mr. Rovot.</p>
-                        </div>
-                    </div>
-                    <div class="msg received"> <!--RoVot messages-->
-                        <div class="msg-text">
-                           <p>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                           </p>
-                       </div>
-                   </div>
                 </div>
             </div>
-            
-        </div>
-        <div class="chatbox-input">
-            <div class="input-group">
-                <input type="text" class="input-chat" id="txtbox" placeholder="chat with Mr. RoVot">
+            <div class="chatbox-input">
+                <div class="input-group">
+                    {{ form.chat_message }}
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 {% endblock content %}
