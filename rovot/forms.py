@@ -27,10 +27,3 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User 
         fields = ['username', 'email', 'password1', 'password2']
-
-class MessageForm(forms.Form):
-    chat_message = forms.CharField(widget=forms.TextInput(attrs={
-        'class': 'input-chat',
-        'type': 'text',
-        'placeholder': 'chat with Mr. RoVot'
-    }))
