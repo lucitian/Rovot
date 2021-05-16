@@ -22,10 +22,16 @@
             // container
             var message_ele = document.getElementById("messages");
 
-            // function to hide message within a specific time
-            setTimeout(function(){ 
-                message_ele.style.display = "none"; 
-            }, 3000);
+            if (message_ele == null){
+                message_ele = ""
+            }
+            else{
+                // function to hide message within a specific time
+                setTimeout(function(){ 
+                    message_ele.style.display = "none"; 
+                }, 3000);
+            }
+            
         </script>
     </body>
 </html>
