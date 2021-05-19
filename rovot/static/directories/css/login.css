@@ -1,0 +1,100 @@
+.login-container {
+    top: 0; left: 0; right: 0; bottom: 0;
+    position: absolute;
+    width: 480px;
+    height: 500px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 15px !important;
+    box-shadow: -5px 10px 20px 10px rgba(0,0,0,0.1);
+}
+
+.login-form-container {
+    width: 360px;
+    height: 360px;
+    margin: auto;
+}
+
+.login-form h1 {
+    margin: 50px 0 40px 0;
+    font-size: 50px;
+    text-align: center;
+}
+
+.login-email {
+    margin: 20px 0 0 0;
+    padding: 10px auto;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+}
+
+.login-email label {
+    font-size: 20px;
+}
+
+.login-email .input-email {
+    width: 100%;
+    height: 50px;
+}
+
+#input-email-login {
+    font-family: Inconsolate, monospace;
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+.login-password {
+    margin: 20px 0 0 0;
+    padding: 10px auto;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+}
+
+.login-password label {
+    font-size: 20px;
+}
+
+.login-password .input-password {
+    width: 100%;
+    height: 50px;
+}
+
+#input-password-login {
+    font-family: Inconsolate, monospace;
+    font-size: 16px;
+    padding: 0 5px;
+}
+
+.login-button {
+    margin: 20px 0 0 0;
+}
+
+#login-button {
+    font-family: Inconsolata, monospace;
+    font-size: 18px;
+    border: none !important;
+    border-radius: 5px !important;
+    width: 100%;
+    height: 60px;
+    margin: 10px auto;
+    background-color: #aed581;
+}
+
+.alert-message {
+    margin: 4px 0 14px 0;
+    text-justify: inter-word;
+    text-align: center;
+    font-size: 14px;
+    color: rgb(26, 84, 192);
+}
+
+.login-create {
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-create p a{
+    text-decoration: none !important;
+}

@@ -5,6 +5,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="{% static 'directories/css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'directories/css/title.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'directories/css/login.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'directories/css/register.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'directories/css/home.css' %}">
         <title>RoVot</title>
     </head>
@@ -14,5 +17,17 @@
                 {% block content %}{% endblock content %}
             </main>
         </div>
+
+        {% block js %}
+        {% endblock %}
+        <script>
+            // container
+            var message_ele = document.getElementById("messages");
+
+            // function to hide message within a specific time
+            setTimeout(function(){ 
+                message_ele.style.display = "none"; 
+            }, 3000);
+        </script>
     </body>
 </html>

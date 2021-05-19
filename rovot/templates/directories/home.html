@@ -1,105 +1,96 @@
 {% extends 'directories/base.html' %}
+{% load static %}
 {% block content %}
     <div class="home-container">
-        <div class="chatbox">
-            <div class="chatbox-messages">
-                <div class="chatbox-header">
-                    <p>Hi, my name is Rovot. I am trained to give a list of movie suggestion based on what your are feeling right now.</p>
-                    <p><br>To get started, I'll need to ask how are you today?</p>
-                </div>
-                <div class="messages-container">
-                    <div class="msg received"> <!--RoVot messages-->
-                         <div class="msg-text">
-                            <p>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit obcaecati voluptates adipisci ipsa ad quia sunt maiores quibusdam? Illum ducimus officia debitis, nam tempore adipisci aspernatur accusantium illo omnis dolor.
-                            </p>
-                        </div>
-                    </div>  
-
-                    <div class="msg sent"> <!--User messages-->
-                        <div class="msg-text">
-                            <p>Hello po</p>
-                        </div>
+        <div class="logout-button">
+            <a href="{% url 'rovot-logout' %}">logout</a>
+        </div>
+        <div class="chatbox-form">
+            <div class="chatbox">
+                <div class="chatbox-messages">
+                    <div class="chatbox-header">
+                        <p>Hi {{request.user}}, my name is Rovot. I am trained to give a list of movie suggestion based on what your are feeling right now.</p>
+                        <p><br>To get started, I'll need to ask how are you today?</p>
                     </div>
 
-                    <div class="msg received"> <!--RoVot messages-->
-                        <div class="msg-text">
-                           <p>
-                               Testing 101 again
-                           </p>
-                       </div>
-                   </div>  
-
-                   <div class="msg sent"> <!--User messages-->
-                        <div class="msg-text">
-                            <p>Messaged you Mr. Rovot.</p>
+                    <div class="messages-container">
+                        <div class="msg">
+                            
                         </div>
                     </div>
-                    <div class="msg received"> <!--RoVot messages-->
-                        <div class="msg-text">
-                           <p>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                           </p>
-                       </div>
-                   </div>
-                   
-                   <div class="msg received"> <!--RoVot messages-->
-                         <div class="msg-text">
-                            <p>
-                                Testing<br>
-                                Testing<br>
-                                Testing<br>
-                                Testing<br>
-                                Testing<br>
-                                Testing<br>
-                            </p>
-                        </div>
-                    </div>  
-
-                    <div class="msg sent"> <!--User messages-->
-                        <div class="msg-text">
-                            <p>Hello po</p>
-                        </div>
-                    </div>
-
-                    <div class="msg received"> <!--RoVot messages-->
-                        <div class="msg-text">
-                           <p>
-                               Testing 101 again
-                           </p>
-                       </div>
-                   </div>  
-
-                   <div class="msg sent"> <!--User messages-->
-                        <div class="msg-text">
-                            <p>Messaged you Mr. Rovot.</p>
-                        </div>
-                    </div>
-                    <div class="msg received"> <!--RoVot messages-->
-                        <div class="msg-text">
-                           <p>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                               Testing<br>
-                           </p>
-                       </div>
-                   </div>
                 </div>
             </div>
-            
-        </div>
-        <div class="chatbox-input">
-            <div class="input-group">
-                <input type="text" class="input-chat" id="txtbox" placeholder="chat with Mr. RoVot">
+            <div class="chatbox-input">
+                <div class="input-group">
+                    <input type="text" class="input-chat" name="msg-chat" placeholder="chat with Mr. Rovot...">
+                </div>
             </div>
         </div>
     </div>
 {% endblock content %}
+
+{% block js %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script>
+        var chatterbotUrl = '{% url "chatterbot" %}';
+        var csrftoken = Cookies.get('csrftoken');
+  
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+  
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+  
+        var $chatlog = $('.msg');
+        var $input = $('.input-chat');
+  
+        function createRow(text, side) {
+            var $row = $('<div class="sent msg-text ' + side + '"></div>');
+
+            $row.text(text);
+            $chatlog.append($row);
+        }
+  
+        function submitInput() {
+            var inputData = {
+                'text': $input.val()
+            }
+  
+            // Display the user's input on the web page
+            createRow(inputData.text, 'right');
+  
+            var $submit = $.ajax({
+                type: 'POST',
+                url: chatterbotUrl,
+                data: JSON.stringify(inputData),
+                contentType: 'application/json'
+            });
+  
+            $submit.done(function(statement) {
+                createRow(statement.text, 'left');
+    
+                // Clear the input field
+                $input.val('');
+    
+                // Scroll to the bottom of the chat interface
+                $chatlog[0].scrollTop = $chatlog[0].scrollHeight;
+            });
+
+        }
+  
+        $input.keydown(function(event) {
+            // Submit the input when the enter button is pressed
+            if (event.keyCode == 13) {
+                submitInput();
+            }
+        });
+    </script>
+{% endblock %}

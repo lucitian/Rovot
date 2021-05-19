@@ -1,0 +1,33 @@
+{% extends 'directories/base.html' %}
+{% block content %}
+    <div class="register-container">
+        <div class="register-form-container">
+            <form class="register-form" method="POST">
+                {% csrf_token %}
+                <h1>Register an account</h1>
+                <div class="register-username">
+                    <label for="register-username">{{form.username.label}}</label>
+                    {{form.username}}
+                </div>
+                <div class="register-email">
+                    <label for="register-email">{{form.email.label}}</label>
+                    {{form.email}}
+                </div>
+                <div class="register-password">
+                    <label for="password1">{{form.password1.label}}</label>
+                    {{form.password1}}
+                </div>
+                <div class="register-confirm">
+                    <label for="password2">{{form.password2.label}}</label>
+                    {{form.password2}}
+                </div>
+                <div class="register-button">
+                    <button type="submit" value="Submit" id="register-button">Register Account</button>
+                </div>
+                <div class="register-exist">
+                    <p>Already have an account? <a href='../login'>Sign in.</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content%}
