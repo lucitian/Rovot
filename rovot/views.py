@@ -7,6 +7,7 @@ from django.http import JsonResponse
 
 from chatterbot import ChatBot
 from chatterbot.ext.django_chatterbot import settings
+from chatterbot.trainers import ChatterBotCorpusTrainer
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -77,9 +78,16 @@ class ChatterBotApiView(View):
 
     chatterbot = ChatBot(**settings.CHATTERBOT)
 
+    trainer = ChatterBotCorpusTrainer(chatterbot)
+
+    trainer.train(
+        "chatterbot.corpus.english.ai",
+        "chatterbot.corpus.english.conversations"
+    )
+
     def post(self, request, *args, **kwargs):
 
-        input_data = json.loads(request.body.decode('utf-8'))
+        input_data = json.loads(request.read().decode('utf-8'))
 
         if 'text' not in input_data:
             return JsonResponse({

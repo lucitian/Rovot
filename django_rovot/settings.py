@@ -75,14 +75,22 @@ WSGI_APPLICATION = 'django_rovot.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rovot_db',
+        'USER': 'root',
+        'PASSWORD': 'root'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -124,9 +132,12 @@ STATIC_URL = '/static/'
 # CHATTERBOT
 CHATTERBOT = {
     'name': 'Rovot',
+    'storage_adapter' : {
+        'import_path': 'chatterbot.storage.SQLStorageAdapter',
+        'database_uri': 'mysql://root:root@localhost/rovot_db'
+    },
     'logic_adapters': [
-        'chatterbot.logic.MathematicalEvaluation',
-        'chatterbot.logic.TimeLogicAdapter',
-        'chatterbot.logic.BestMatch'
+        {"import_path": "chatterbot.logic.BestMatch",},
+        {'import_path': "chatterbot.logic.MathematicalEvaluation"}
     ],
 }
