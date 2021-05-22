@@ -24,7 +24,7 @@
 }
 
 .chatbox {
-    height: 700px;
+    height: auto;
     width: 550px;
     position: fixed;
     top: 75px; bottom: 135px;

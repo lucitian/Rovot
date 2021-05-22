@@ -80,11 +80,13 @@ class ChatterBotApiView(View):
 
     trainer = ChatterBotCorpusTrainer(chatterbot)
 
+    '''
     trainer.train(
         "chatterbot.corpus.english.ai",
         "chatterbot.corpus.english.conversations"
     )
-
+    '''
+    
     def post(self, request, *args, **kwargs):
 
         input_data = json.loads(request.read().decode('utf-8'))

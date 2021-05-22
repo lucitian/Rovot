@@ -15,7 +15,7 @@
 
                     <div class="messages-container">
                         <div class="msg">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,9 @@
   
         var $chatlog = $('.msg');
         var $input = $('.input-chat');
-  
+
+        var messageBody = document.querySelector('.chatbox');
+
         function createRow(text, side) {
             var $row = $('<div class="sent msg-text ' + side + '"></div>');
 
@@ -76,12 +78,12 @@
   
             $submit.done(function(statement) {
                 createRow(statement.text, 'left');
-    
+
+                messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+                
                 // Clear the input field
                 $input.val('');
-    
-                // Scroll to the bottom of the chat interface
-                $chatlog[0].scrollTop = $chatlog[0].scrollHeight;
+
             });
 
         }
@@ -90,6 +92,7 @@
             // Submit the input when the enter button is pressed
             if (event.keyCode == 13) {
                 submitInput();
+                messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
                 $input.val('');
             }
         });
