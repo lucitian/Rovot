@@ -1,4 +1,4 @@
-import json
+import json, pickle
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm
@@ -11,6 +11,14 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import sys
+from . import text_processing
+
+from .LogisticRegression import LogisticRegression
+
+sys.modules['text_processing'] = text_processing
+
+model = pickle.load(open('rovot/model.sav', 'rb'))
 
 # Create your views here.
 def title(request):
@@ -80,16 +88,24 @@ class ChatterBotApiView(View):
 
     trainer = ChatterBotCorpusTrainer(chatterbot)
 
-    '''
+    """
     trainer.train(
         "chatterbot.corpus.english.ai",
         "chatterbot.corpus.english.conversations"
-    )
-    '''
+    )       
+    """
     
     def post(self, request, *args, **kwargs):
 
         input_data = json.loads(request.read().decode('utf-8'))
+
+        lbl = ('fear', 'sadness', 'anger', 'love', 'joy', 'surprise')
+
+        prediction = model.predict(input_data['text'])
+
+        confidence = prediction[1]
+
+        print(f"Text: {input_data['text']}\nPrediction: {lbl[int(prediction[0][0])]} | Confidence: {confidence[0][int(prediction[0][0])] * 100:.2f}%\n")
 
         if 'text' not in input_data:
             return JsonResponse({
