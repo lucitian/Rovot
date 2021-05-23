@@ -1,4 +1,4 @@
-import json, pickle
+import json, pickle, datetime, sys
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm
@@ -11,9 +11,8 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-import sys
-from . import text_processing
 
+from . import text_processing
 from .LogisticRegression import LogisticRegression
 
 sys.modules['text_processing'] = text_processing
@@ -82,6 +81,15 @@ def auth_logout(request):
 def home(request):
     return render(request, 'directories/home.html')
 
+user_sentiments = {
+    'fear': 0,
+    'sadness': 0,
+    'anger': 0,
+    'love': 0,
+    'joy': 0,
+    'surprise': 0
+    }
+
 class ChatterBotApiView(View):
 
     chatterbot = ChatBot(**settings.CHATTERBOT)
@@ -96,6 +104,7 @@ class ChatterBotApiView(View):
     """
     
     def post(self, request, *args, **kwargs):
+        print(user_sentiments)
 
         input_data = json.loads(request.read().decode('utf-8'))
 
@@ -106,6 +115,10 @@ class ChatterBotApiView(View):
         confidence = prediction[1]
 
         print(f"Text: {input_data['text']}\nPrediction: {lbl[int(prediction[0][0])]} | Confidence: {confidence[0][int(prediction[0][0])] * 100:.2f}%\n")
+    
+        user_sentiments[lbl[int(prediction[0][0])]] += 1
+
+        print(user_sentiments)
 
         if 'text' not in input_data:
             return JsonResponse({
