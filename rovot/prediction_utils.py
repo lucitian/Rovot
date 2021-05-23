@@ -10,6 +10,28 @@ def get_movies():
 
     return df
 
+def dataframe_to_ctx(dataframe: pd.DataFrame) -> dict:
+    ctx = {
+        'movies': []
+    }
+
+    for index, rows in dataframe.iterrows():
+        temp = {}
+        temp['title'] = rows['title']
+        temp['diretor'] = rows['director']
+        temp['cast'] = rows['cast']
+        temp['country'] = rows['country']
+        temp['date_added'] = rows['date_added']
+        temp['release_year'] = rows['release_year']
+        temp['rating'] = rows['rating']
+        temp['duration'] = rows['duration']
+        temp['listed_in'] = rows['listed_in']
+        temp['description'] = rows['description']
+
+        ctx['movies'].append(temp)
+    
+    return ctx
+
 def generate_recommendation(genre, size=3):
     genre_map = {
         "fear": ("Sci-Fi & Fantasy",

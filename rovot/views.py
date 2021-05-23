@@ -145,7 +145,7 @@ def result_movie(request):
 
     active_sentiment = max(user_sentiments, key=user_sentiments.get)
 
-    recommendation = generate_recommendation(active_sentiment)
+    recommendation = generate_recommendation(active_sentiment, 5)
 
     user_sentiments = {
         'fear': 0,
@@ -156,6 +156,11 @@ def result_movie(request):
         'surprise': 0
     }
 
+    print(f"Active: {active_sentiment}")
     print(recommendation)
+
+    ctx = dataframe_to_ctx(recommendation)
+
+    print(ctx)
 
     return render(request, 'directories/result.html')
