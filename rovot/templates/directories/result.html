@@ -1,0 +1,21 @@
+{% extends 'directories/base.html' %}
+{% block content %}
+    <div class="result-container">
+        <div class="logout-button">
+            <a href="{% url 'rovot-logout' %}">logout</a>
+        </div>
+        <div class="result-box">
+            <div class="result-header">
+                <h1>These are the movies...</h1>
+            </div>
+            <div class="result-options">
+                <div class="chat">
+
+                </div>
+                <div class="graph">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

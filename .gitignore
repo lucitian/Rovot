@@ -2,3 +2,4 @@ secret_settings.py
 __pycache__
 django_rovot/__pycache__
 rovot/__pycache__
+.vscode

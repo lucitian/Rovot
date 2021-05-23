@@ -136,8 +136,4 @@ CHATTERBOT = {
         'import_path': 'chatterbot.storage.SQLStorageAdapter',
         'database_uri': 'mysql://root:root@localhost/rovot_db'
     },
-    'logic_adapters': [
-        {"import_path": "chatterbot.logic.BestMatch",},
-        {'import_path': "chatterbot.logic.MathematicalEvaluation"}
-    ],
 }

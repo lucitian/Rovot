@@ -12,7 +12,6 @@
                         <p>Hi {{request.user}}, my name is Rovot. I am trained to give a list of movie suggestion based on what your are feeling right now.</p>
                         <p><br>To get started, I'll need to ask how are you today?</p>
                     </div>
-
                     <div class="messages-container">
                         <div class="msg">
 
@@ -21,6 +20,11 @@
                 </div>
             </div>
             <div class="chatbox-input">
+                <div class="chatbox-result">
+                    <a href="{% url 'rovot-result'%}" class="result-button">
+                        <p>Or, would you like to see the movies?</p>
+                    </a>
+                </div>
                 <div class="input-group">
                     <input type="text" class="input-chat" name="msg-chat" placeholder="chat with Mr. Rovot...">
                 </div>
@@ -68,11 +72,12 @@
   
             // Display the user's input on the web page
             createRow(inputData.text, 'right');
-  
+            
+            jsondata = JSON.stringify(inputData)
             var $submit = $.ajax({
                 type: 'POST',
                 url: chatterbotUrl,
-                data: JSON.stringify(inputData),
+                data: jsondata,
                 contentType: 'application/json'
             });
   

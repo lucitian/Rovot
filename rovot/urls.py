@@ -11,4 +11,5 @@ urlpatterns = [
 
     path('rovot/', views.home, name='rovot-home'),
     url(r'^api/chatterbot/', ChatterBotApiView.as_view(), name='chatterbot'),
+    path('result/', views.result_movie, name='rovot-result'),
 ]

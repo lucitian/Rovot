@@ -96,12 +96,11 @@ class ChatterBotApiView(View):
 
     trainer = ChatterBotCorpusTrainer(chatterbot)
 
-    """
+    '''
     trainer.train(
-        "chatterbot.corpus.english.ai",
         "chatterbot.corpus.english.conversations"
     )       
-    """
+    '''
     
     def post(self, request, *args, **kwargs):
         print(user_sentiments)
@@ -138,4 +137,7 @@ class ChatterBotApiView(View):
         return JsonResponse({
             'name': self.chatterbot.name
         })
-     
+    
+@login_required(login_url='rovot-login')
+def result_movie(request):
+    return render(request, 'directories/result.html')
