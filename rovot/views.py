@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 
 from . import text_processing
 from .LogisticRegression import LogisticRegression
+from .prediction_utils import *
 
 sys.modules['text_processing'] = text_processing
 
@@ -140,4 +141,21 @@ class ChatterBotApiView(View):
     
 @login_required(login_url='rovot-login')
 def result_movie(request):
+    global user_sentiments
+
+    active_sentiment = max(user_sentiments, key=user_sentiments.get)
+
+    recommendation = generate_recommendation(active_sentiment)
+
+    user_sentiments = {
+        'fear': 0,
+        'sadness': 0,
+        'anger': 0,
+        'love': 0,
+        'joy': 0,
+        'surprise': 0
+    }
+
+    print(recommendation)
+
     return render(request, 'directories/result.html')
