@@ -164,3 +164,7 @@ def result_movie(request):
     print(ctx)
 
     return render(request, 'directories/result.html', ctx)
+
+@login_required(login_url='rovot-login')
+def result_graph(request):
+    return render(request, 'directories/graph.html')
