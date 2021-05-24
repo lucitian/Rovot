@@ -160,6 +160,7 @@ def result_movie(request):
     print(recommendation)
 
     ctx = dataframe_to_ctx(recommendation)
+    ctx['active_sentiment'] = active_sentiment
 
     print(ctx)
 
