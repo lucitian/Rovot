@@ -9,16 +9,28 @@
                 <h1>These are the movies that I could recommend to you...</h1>
             </div>
             <div class="result-movies">
-                <div class="result-movies-box">
-                    
-                </div>
+                {% for movie in movies %}
+                    <div class="result-movies-box">
+                        <div class="result-movie-title">
+                            <span id="movie-title"> {{ movie.title }} <span id="movie-date"> ({{ movie.release_year}}) </span></span>
+                        </div>
+                        <div class="result-movie-director">
+                            Directed by<span id="movie-director"> {{ movie.director }} </span>
+                        </div>
+                        <div class="result-movie-description">
+                            Description:<br>
+                            <span id="movie-description"> {{ movie.description }} </span>
+                        </div>
+                        <div class="result-movie-genre">
+                            Genre:<span id="movie-genre"> {{ movie.listed_in }} </span>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <div class="result-options">
             <button class="chat" type="button">
-                <a href="{% url 'rovot-home' %}">
-                    Go back to chat
-                </a>
+                <a href="{% url 'rovot-home' %}">Go back to chat</a>
             </button>
             <button class="graph" type="button">
                 <a href="#">Check sentimental graph</a>
