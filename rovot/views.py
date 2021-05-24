@@ -1,4 +1,5 @@
 import json, pickle, datetime, sys
+from secret_settings import HOST, NAME, PASSWORD, USER
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import UserRegistrationForm
@@ -101,11 +102,11 @@ class ChatterBotApiView(View):
 
     trainer = ChatterBotCorpusTrainer(chatterbot)
 
-    # '''
+    '''
     trainer.train(
         "chatterbot.corpus.english.conversations"
     )       
-    # '''
+    '''
     
     def post(self, request, *args, **kwargs):
         print(user_sentiments)
@@ -151,8 +152,7 @@ def result_movie(request):
 
     recommendation = generate_recommendation(active_sentiment, 5)
     
-    db = DatabaseConnection(host="localhost",user="root",pw="root", database="rovot_db")
-    print(f"ahaha:{request.user}")
+    db = DatabaseConnection(host=HOST,user=USER,pw=PASSWORD, database=NAME)
     db.append_row(
         'user_sentiments',
         id=request.user.id,
@@ -185,7 +185,7 @@ def result_movie(request):
 @login_required(login_url='rovot-login')
 def result_graph(request):
     
-    db = DatabaseConnection(host="localhost",user="root",pw="root", database="rovot_db")
+    db = DatabaseConnection(host=HOST,user=USER,pw=PASSWORD, database=NAME)
 
     fetched = db.fetch_row('user_sentiments', id=request.user.id)
 
