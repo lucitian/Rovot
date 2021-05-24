@@ -101,11 +101,11 @@ class ChatterBotApiView(View):
 
     trainer = ChatterBotCorpusTrainer(chatterbot)
 
-    '''
+    # '''
     trainer.train(
         "chatterbot.corpus.english.conversations"
     )       
-    '''
+    # '''
     
     def post(self, request, *args, **kwargs):
         print(user_sentiments)

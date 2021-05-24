@@ -1,4 +1,5 @@
 import mysql.connector as mysql
+from secret_settings import *
 
 class DatabaseConnection():
     def __init__(self, host, user, pw, database, port=3306):
@@ -94,7 +95,8 @@ class DatabaseConnection():
 
 import datetime 
 
-db = DatabaseConnection(host="localhost",user="root",pw="root", database="rovot_db")
+# db = DatabaseConnection(host="localhost",user="root",pw="root", database="rovot_db")
+db = DatabaseConnection(host=HOST,user=USER,pw=PASSWORD, database=NAME)
 
 """
 print(db.fetch_row(
