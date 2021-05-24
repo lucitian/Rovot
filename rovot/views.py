@@ -12,9 +12,13 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+import plotly.offline as opy
+import plotly.graph_objs as go
+
 from . import text_processing
 from .LogisticRegression import LogisticRegression
 from .prediction_utils import *
+from .database.connector import DatabaseConnection
 
 sys.modules['text_processing'] = text_processing
 
@@ -146,6 +150,20 @@ def result_movie(request):
     active_sentiment = max(user_sentiments, key=user_sentiments.get)
 
     recommendation = generate_recommendation(active_sentiment, 5)
+    
+    db = DatabaseConnection(host="localhost",user="root",pw="root", database="rovot_db")
+    print(f"ahaha:{request.user}")
+    db.append_row(
+        'user_sentiments',
+        id=request.user.id,
+        fear=user_sentiments['fear'],
+        sadness=user_sentiments['sadness'],
+        anger=user_sentiments['anger'],
+        love=user_sentiments['love'],
+        joy=user_sentiments['joy'],
+        surprise=user_sentiments['surprise'],
+        date_interaction=datetime.datetime.now()
+    )
 
     user_sentiments = {
         'fear': 0,
@@ -162,10 +180,37 @@ def result_movie(request):
     ctx = dataframe_to_ctx(recommendation)
     ctx['active_sentiment'] = active_sentiment
 
-    print(ctx)
-
     return render(request, 'directories/result.html', ctx)
 
 @login_required(login_url='rovot-login')
 def result_graph(request):
-    return render(request, 'directories/graph.html')
+    
+    db = DatabaseConnection(host="localhost",user="root",pw="root", database="rovot_db")
+
+    fetched = db.fetch_row('user_sentiments', id=request.user.id)
+
+    fear = sadness = anger = love = joy = surprise = 0
+
+    for row in fetched:
+        fear += row[1]
+        sadness += row[2]
+        anger += row[3]
+        love += row[4]
+        joy += row[5]
+        surprise += row[6]
+    
+    print(f"fear: {fear}, sadness: {sadness}, anger: {anger}, love: {love}, joy: {joy}, surprise: {surprise}")
+
+    data = [go.Bar(
+        x = ["Fear", "Sadness", "Anger", "Love", "Joy", "Surprise"],
+        y = [fear,sadness,anger,love,joy,surprise]
+    )]
+
+    fig = go.Figure(data=data)
+    fig.update_layout(
+        title_text="User Sentiment Distrubtion",
+    )
+
+    bar_div = opy.plot(fig, auto_open=False, output_type='div')
+
+    return render(request, 'directories/graph.html', {'graph': bar_div})

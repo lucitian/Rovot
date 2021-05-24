@@ -96,3 +96,9 @@ import datetime
 
 db = DatabaseConnection(host="localhost",user="root",pw="root", database="rovot_db")
 
+"""
+print(db.fetch_row(
+    'user_sentiments',
+    id=1
+))
+"""
