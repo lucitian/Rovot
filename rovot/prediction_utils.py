@@ -18,7 +18,7 @@ def dataframe_to_ctx(dataframe: pd.DataFrame) -> dict:
     for index, rows in dataframe.iterrows():
         temp = {}
         temp['title'] = rows['title']
-        temp['diretor'] = rows['director']
+        temp['director'] = rows['director']
         temp['cast'] = rows['cast']
         temp['country'] = rows['country']
         temp['date_added'] = rows['date_added']

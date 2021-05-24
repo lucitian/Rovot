@@ -163,4 +163,4 @@ def result_movie(request):
 
     print(ctx)
 
-    return render(request, 'directories/result.html')
+    return render(request, 'directories/result.html', ctx)

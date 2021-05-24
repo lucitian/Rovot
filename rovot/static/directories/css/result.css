@@ -24,20 +24,65 @@
     top: 75px; bottom: 135px;
     overflow-y: auto;
     background-color: #fff;
-    border: 1px solid;
 }
 
 .result-header {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: red;
+    height: auto;
+    margin-bottom: 25px;
+    background-color: #fff;
 }
 
 .result-header h1 {
     text-align: justify;
     font-size: 22px;
 }
+
+.result-movies {
+    width: 100%;
+    height: auto;
+    padding: 0 30px;
+}
+
+.result-movies-box {
+    width: 100%;
+    height: auto;
+    border: none !important;
+    border-radius: 15px !important;
+    background-color: #fff;
+    box-shadow: -5px 10px 20px 10px rgba(0,0,0,0.1);
+    padding: 15px;
+    margin-bottom: 45px;
+}
+
+.result-movie-title {
+    margin-bottom: 15px;
+}
+
+#movie-title {
+    font-family: Inconsolate, monospace;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.result-movie-director {
+    margin-bottom: 15px;
+}
+
+#movie-date {
+    font-size: 20px;
+    font-weight: 700px;
+}
+
+.result-movie-description {
+    margin-bottom: 15px;
+}
+
+
+
+/* Option Buttons */
 
 .result-options {
     width: 550px;
