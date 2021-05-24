@@ -1,4 +1,5 @@
 {% extends 'directories/base.html' %}
+{% load static %}
 {% block content %}
     <div class="result-container">
         <div class="logout-button">
@@ -32,9 +33,21 @@
             <button class="chat" type="button">
                 <a href="{% url 'rovot-home' %}">Go back to chat</a>
             </button>
-            <button class="graph" type="button">
-                <a href="#">Check sentimental graph</a>
+            <button class="graph" type="button" >
+                <a href="{% url 'rovot-graph' %}" onclick="return popitup('/graph')">Check sentimental graph</a>
             </button>
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+    function popitup(url) {
+        newwindow=window.open(url,'{{title}}','height=480,width=640');
+        if (window.focus) {newwindow.focus()}
+        return false;
+    }
+</script>
+
 {% endblock %}
