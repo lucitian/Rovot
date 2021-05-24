@@ -140,6 +140,7 @@ CHATTERBOT = {
         'database_uri': DATABASE_URI
     },
     'logic_adapter': {
-        'chatterbot.logic.BestMatch'
+        'chatterbot.logic.BestMatch',
+        'chatterbot.logic.MathematicalEvaluation',
     }
 }
