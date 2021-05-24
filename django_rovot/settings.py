@@ -137,6 +137,7 @@ CHATTERBOT = {
         'database_uri': 'mysql://root:root@localhost/rovot_db'
     },
     'logic_adapter': {
-        'chatterbot.logic.BestMatch'
+        'chatterbot.logic.BestMatch',
+        'chatterbot.logic.MathematicalEvaluation',
     }
 }

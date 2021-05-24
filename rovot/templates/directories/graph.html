@@ -2,9 +2,11 @@
 {% block content %}
 <div class="graph-container">
     <div class="graph-box">
-        {% if graph %}
-            {{ graph|safe }}
-        {% endif %}
+        <div class="graph-rep">
+            {% if graph %}
+                {{ graph|safe }}
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}
