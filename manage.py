@@ -6,6 +6,8 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    x = 250
+    sys.setrecursionlimit(x)
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_rovot.settings')
     try:
         from django.core.management import execute_from_command_line

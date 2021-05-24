@@ -5,10 +5,11 @@
         <div class="logout-button">
             <a href="{% url 'rovot-logout' %}">logout</a>
         </div>
-        <div class="result-box">
-            <div class="result-header">
-                <h1>These are the movies that I could recommend to you...</h1>
-            </div>
+        <div class="result-header">
+            <h1>It seems like you feel a lot of {{ active_sentiment }}.</h1><br>
+            <h1>These are the movies that I could recommend to you...</h1>
+        </div>
+        <div class="result-box"> 
             <div class="result-movies">
                 {% for movie in movies %}
                     <div class="result-movies-box">
@@ -30,12 +31,13 @@
             </div>
         </div>
         <div class="result-options">
-            <button class="chat" type="button">
-                <a href="{% url 'rovot-home' %}">Go back to chat</a>
-            </button>
-            <button class="graph" type="button" >
-                <a href="{% url 'rovot-graph' %}" onclick="return popitup('/graph')">Check sentimental graph</a>
-            </button>
+            <form action="{% url 'rovot-home' %}">
+                <input class="chat" type="submit" value="back to chat">
+            </form>
+
+            <form action="{% url 'rovot-graph' %}">
+                <input class="graph" type="submit" value="check graph" onclick="return popitup('/graph')">
+            </form>
         </div>
     </div>
 {% endblock %}
